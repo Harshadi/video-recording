@@ -6,7 +6,7 @@ const App = () => {
   const webcamRef = useRef(null);
   const [isRecording, setIsRecording] = useState(false);
   const [previewVideo, setPreviewVideo] = useState(null);
-
+  const [enableCam, setEnableCam] = useState(false);
   const handleStartRecording = () => {
     setIsRecording(true);
     setPreviewVideo(null);
@@ -20,9 +20,14 @@ const App = () => {
   return (
     <div className="App">
       <h1>Video Recording App</h1>
-      <div>
+      {!enableCam &&
+        <button onClick={()=>setEnableCam(true)}>Enable Cam</button>
+      }
+      {enableCam &&
+        <div>
         <Webcam audio={false} ref={webcamRef} />
       </div>
+      }
       <div>
         <ReactMediaRecorder
           video
