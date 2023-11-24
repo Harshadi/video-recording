@@ -30,7 +30,7 @@ const App = () => {
             <div>
               <p>{status}</p>
               {!isRecording ? (
-                <button onClick={() => startRecording()}>Start Recording</button>
+                <button onClick={() => { handleStartRecording(); startRecording()}}>Start Recording</button>
               ) : (
                 <button onClick={() => stopRecording()}>Stop Recording</button>
               )}
@@ -39,17 +39,6 @@ const App = () => {
           onStop={(mediaBlobUrl) => handleStopRecording(mediaBlobUrl)}
         />
       </div>
-      {isRecording && <p>Recording...</p>}
-      {!isRecording && (
-        <div>
-          <button onClick={handleStartRecording}>Start Recording</button>
-        </div>
-      )}
-      {isRecording && (
-        <div>
-          <button onClick={() => handleStopRecording()}>Stop Recording</button>
-        </div>
-      )}
       {previewVideo && (
         <div>
           <p>Preview:</p>
